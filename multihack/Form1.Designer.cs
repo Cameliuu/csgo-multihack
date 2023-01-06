@@ -36,6 +36,8 @@ partial class Form1
             this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
+            this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialSwitch3 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialTabControl1.SuspendLayout();
             this.TriggerBot.SuspendLayout();
@@ -164,6 +166,8 @@ partial class Form1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.materialCheckbox2);
+            this.tabPage1.Controls.Add(this.materialCheckbox1);
             this.tabPage1.Controls.Add(this.materialSwitch3);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
@@ -171,6 +175,40 @@ partial class Form1
             this.tabPage1.TabIndex = 2;
             this.tabPage1.Text = "ESP";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // materialCheckbox2
+            // 
+            this.materialCheckbox2.AutoSize = true;
+            this.materialCheckbox2.Depth = 0;
+            this.materialCheckbox2.Location = new System.Drawing.Point(63, 196);
+            this.materialCheckbox2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox2.Name = "materialCheckbox2";
+            this.materialCheckbox2.ReadOnly = false;
+            this.materialCheckbox2.Ripple = true;
+            this.materialCheckbox2.Size = new System.Drawing.Size(71, 37);
+            this.materialCheckbox2.TabIndex = 2;
+            this.materialCheckbox2.Text = "Glow";
+            this.materialCheckbox2.UseVisualStyleBackColor = true;
+            this.materialCheckbox2.CheckedChanged += new System.EventHandler(this.materialCheckbox2_CheckedChanged_1);
+            // 
+            // materialCheckbox1
+            // 
+            this.materialCheckbox1.AutoSize = true;
+            this.materialCheckbox1.Depth = 0;
+            this.materialCheckbox1.Location = new System.Drawing.Point(63, 120);
+            this.materialCheckbox1.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox1.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox1.Name = "materialCheckbox1";
+            this.materialCheckbox1.ReadOnly = false;
+            this.materialCheckbox1.Ripple = true;
+            this.materialCheckbox1.Size = new System.Drawing.Size(78, 37);
+            this.materialCheckbox1.TabIndex = 1;
+            this.materialCheckbox1.Text = "Boxes";
+            this.materialCheckbox1.UseVisualStyleBackColor = true;
+            this.materialCheckbox1.CheckedChanged += new System.EventHandler(this.materialCheckbox1_CheckedChanged);
             // 
             // materialSwitch3
             // 
@@ -222,4 +260,6 @@ partial class Form1
     private MaterialSkin.Controls.MaterialSwitch materialSwitch2;
     private TabPage tabPage1;
     private MaterialSkin.Controls.MaterialSwitch materialSwitch3;
+    private MaterialSkin.Controls.MaterialCheckbox materialCheckbox2;
+    private MaterialSkin.Controls.MaterialCheckbox materialCheckbox1;
 }

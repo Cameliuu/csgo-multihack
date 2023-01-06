@@ -132,13 +132,12 @@ public partial class Form1 : MaterialForm
     {
         if (materialSwitch3.Checked)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            
             ESPSettings.toggleOn();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[ + ] ESP ON");
             Console.ForegroundColor = ConsoleColor.Gray;
-            materialComboBox1.Show();
+ 
         }
         else
         {
@@ -146,7 +145,48 @@ public partial class Form1 : MaterialForm
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("[ + ] ESP OFF");
             Console.ForegroundColor = ConsoleColor.Gray;
-            materialComboBox1.Hide();
+            
+        }
+    }
+
+    private void materialCheckbox1_CheckedChanged(object sender, EventArgs e)
+    {
+        if (materialCheckbox1.Checked)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            ESPSettings.toggleOn();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("[ + ] BOXES ON");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            
+        }
+        else
+        {
+            ESPSettings.toggleOff();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("[ + ] BOXES OFF");
+            Console.ForegroundColor = ConsoleColor.Gray;            
+        }
+    }
+
+    private void materialCheckbox2_CheckedChanged_1(object sender, EventArgs e)
+    {
+        if (materialCheckbox2.Checked)
+        {
+            
+            ESPSettings.toggleOn();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("[ + ] GLOW ON");
+            Console.ForegroundColor = ConsoleColor.Gray;
+
+        }
+        else
+        {
+            ESPSettings.toggleOff();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("[ + ] GLOW OFF");
+            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

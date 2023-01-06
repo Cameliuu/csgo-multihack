@@ -21,5 +21,7 @@ namespace multihack
         public static Int32 viewOffset = 0x108;
         public static Int32 dormant = 0xED;
         public static Int32 viewMatrix = 0x4DF0D44;
+        public static Int32 glowIndex = 0x10488;
+        public static Int32 glowObjectManager = 0x535A9D8;
     }
 }

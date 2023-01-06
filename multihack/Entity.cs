@@ -17,7 +17,21 @@ namespace multihack
         private float _magnitude { get; set; }
         private Vector3 _headPos { get; set; }
         private Int32 _dormant { get; set; }
+        private Point top { get; set; }
+        private Point bot {get; set;}
+        private Int32 glowIndex { get; set; }
+        public Rectangle rect()
+        {
+            return new Rectangle
+            {
+                Location = new Point(bot.X - (bot.Y - top.Y) / 4, top.Y),
+                Size = new Size((bot.Y - top.Y) / 2, (bot.Y - top.Y))
+            };
+        }
         public void SetHealth(Int32 health) { this._health = health; }
+        public void SetTop(Point topp) { top = topp; }
+        public void SetGlowIndex(Int32 glow) { glowIndex = glow; }
+        public void SetBot(Point topp) { bot = topp; }
         public void SetMagnitude(float mag) { this._magnitude = mag; }
         public void SetFeetPos(Vector3 pos) { this._feetPos = pos; }
         public void SetHeadPos(Vector3 headPos) { this._headPos = headPos; }
@@ -34,5 +48,8 @@ namespace multihack
         public IntPtr GetBaseAdress() { return this._baseAdress; }
         public float GetMagnitude() { return this._magnitude; }
         public Int32 GetDormant() { return this._dormant; }
+        public Point GetTop() { return top; }
+        public Point GetBot() { return bot; }
+        public Int32 GetGlowIndex() { return glowIndex; }
     }
 }   

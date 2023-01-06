@@ -18,13 +18,18 @@ namespace multihack
         {
             Swed swed = new Swed("csgo");
             var client = swed.GetModuleBase("client.dll");
+            Entities.SetClient(client);
+            Entities.SetSwed(swed); 
+            
             var engine = swed.GetModuleBase("engine.dll");
 
             while(true)
             {
                 var localPlayer = ReadLocalPlayer(swed, client);
+                Entities.SetLocalPlayer(localPlayer);
                 var entities = ReadEntities(swed, client, localPlayer);
                 entities = entities.OrderBy(x => x.GetMagnitude()).ToList();
+                Entities.SetEntitiesList(entities);
                 if(TriggerSettings.isTurnedOn())
                 {
                     TriggerBot.Run(swed,client,localPlayer);
@@ -57,19 +62,37 @@ namespace multihack
             return enemy;
 
         }
-        public static Entity ReadEntity(Swed swed,IntPtr ptrBase, Entity localPlayer)
+        public static Entity ReadEntity(Swed swed,IntPtr ptrBase, Entity localPlayer, IntPtr client)
         {
+            var glowManager = swed.ReadPointer(client, Offsets.glowObjectManager);
             var ent = new Entity();
-           
+            Form2 f = new Form2();
             ent.SetBaseAdress(ptrBase);
             if(AimbotSettings.isTurnedOn())
                 ent.SetHeadPos(GetHead(swed, ent.GetBaseAdress(),AimbotSettings.getBoneID(AimbotSettings.getBone())));
             ent.SetHealth(swed.ReadInt(ent.GetBaseAdress(), Offsets.health));
+            var vect = ent.GetFeetPos();
+            vect.Z += 58;
             ent.SetTeam(swed.ReadInt(ent.GetBaseAdress(), Offsets.team));
             ent.SetFeetPos(swed.ReadVec(ent.GetBaseAdress(), Offsets.vecOrigin));
            
             ent.SetMagnitude(CalcMag(localPlayer.GetFeetPos(), ent.GetHeadPos()));
             ent.SetDormant(swed.ReadInt(ent.GetBaseAdress(), Offsets.dormant));
+            ent.SetTop(World2Screen(ReadViewMatrix(swed, client), vect, f.Width, f.Height));
+            ent.SetBot(World2Screen(ReadViewMatrix(swed, client), ent.GetFeetPos(), f.Width, f.Height));
+            ent.SetGlowIndex(swed.ReadInt(ent.GetBaseAdress(), Offsets.glowIndex));
+            if (ESPSettings.isTurnedOn())
+            {
+                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, 1f);
+                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, 1f);
+                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, 1f);
+                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
+
+                swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
+                swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));
+                Console.WriteLine("GLOWING");
+            }
+            f.Refresh();
             return ent;
         }
         public static bool isAlive(Entity ent)
@@ -99,13 +122,14 @@ namespace multihack
         }
         public static List<Entity> ReadEntities(Swed swed,IntPtr client, Entity localPlayer)
         {
-            
+            var glowObjectManger = swed.ReadPointer(client, Offsets.glowObjectManager);
             var entities = new List<Entity>();
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < 32; i++)
             {
                 var buffer = swed.ReadPointer(client, Offsets.entityList + i * 0x10);
-                var ent = ReadEntity(swed, buffer, localPlayer);
-
+                var ent = ReadEntity(swed, buffer, localPlayer,client);
+                
+               
                 if (ent.GetHealth() < 2 || ent.GetDormant() != 0)
                     continue;
                 if (ent.GetTeam() != localPlayer.GetTeam() && ent.GetFeetPos()!=Vector3.Zero && isAlive(ent))
@@ -130,12 +154,12 @@ namespace multihack
 
                 float screenY = (mtx.m21 * pos.X) + ((mtx.m22 * pos.Y)) + (mtx.m23 * pos.Z) + mtx.m24;
 
-                float camX = width / 2;
-                float camY = height / 2;
+                float camX = width / 2f;
+                float camY = height / 2f;
 
 
                 float X = camX + (camX * screenX / screenW);
-                float Y = camY - (camY * screenX / screenW);
+                float Y = camY - (camY * screenY / screenW);
 
                 twoD.X =(int)X;
                 twoD.Y =(int)Y;
@@ -172,6 +196,15 @@ namespace multihack
             mtx.m44 = BitConverter.ToSingle(buffer, 15 * 4);
 
             return mtx;
+        }
+        public static Rectangle CalcRect(Point feet, Point head)
+        {
+            var rect = new Rectangle();
+            rect.X = head.X - (feet.Y - head.Y) / 4;
+            rect.Y = head.Y;
+            rect.Width = (feet.Y - head.Y) / 2;
+            rect.Height = (feet.Y - head.Y);
+            return rect;
         }
     }
 }

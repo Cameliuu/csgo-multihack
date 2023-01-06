@@ -9,8 +9,10 @@ namespace multihack
 {
     public class ESP
     {
-        public static void Run(Swed swed)
-        { 
+        public static void Run(Swed swed, IntPtr client, List<Entity> entities)
+        {
+            
+
             
         }
     }
