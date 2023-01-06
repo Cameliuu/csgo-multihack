@@ -10,6 +10,7 @@ namespace multihack
     public class Entity
     {
         private Int32 _team { get; set; }
+           
         private Int32 _health { get; set; }
         private Vector3 _feetPos { get; set; }
         private Vector3 _headPos { get; set; }

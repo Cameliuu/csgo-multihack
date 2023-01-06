@@ -9,7 +9,7 @@ namespace multihack
     public class TriggerSettings
     {
         private static bool _triggerBot { get; set; }
-
+        private static int _intensity { get; set; }
         public static void toggleOn()
         {
             _triggerBot = true;
@@ -20,6 +20,9 @@ namespace multihack
         }
         public static bool isTurnedOn()
         { return _triggerBot; }
+
+        public static int getIntensity() { return _intensity; }
+        public static void setIntensity(int intensity) { _intensity = intensity; }
     }
     public class AimbotSettings
     {

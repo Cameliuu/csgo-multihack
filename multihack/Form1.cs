@@ -32,4 +32,29 @@ public partial class Form1 : Form
         Thread thread = new Thread(Main.Run) { IsBackground = true };
         thread.Start();
     }
+
+    private void trackBar1_Scroll(object sender, EventArgs e)
+    {
+        switch(trackBar1.Value)
+        {
+            case 1:
+                TriggerSettings.setIntensity(2000);
+                break;
+            case 2:
+                TriggerSettings.setIntensity(1000);
+                break;
+            case 3:
+                TriggerSettings.setIntensity(500);
+                break;
+            case 4:
+                TriggerSettings.setIntensity(50);             
+                break;
+            case 5:
+                TriggerSettings.setIntensity(0);
+                break;
+
+
+        }
+        Console.WriteLine($"[ + ] TRIGGER BOT INTENSITY SET TO {trackBar1.Value}");
+    }
 }
