@@ -17,3 +17,4 @@ D:\repos\csgo-multihack\multihack\obj\x86\Debug\net6.0-windows\multihack.genrunt
 D:\repos\csgo-multihack\multihack\obj\x86\Debug\net6.0-windows\ref\multihack.dll
 D:\repos\csgo-multihack\multihack\bin\x86\Debug\net6.0-windows\swed32.dll
 D:\repos\csgo-multihack\multihack\obj\x86\Debug\net6.0-windows\multihack.csproj.CopyComplete
+D:\repos\csgo-multihack\multihack\bin\x86\Debug\net6.0-windows\MaterialSkin.dll

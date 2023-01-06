@@ -61,7 +61,8 @@ namespace multihack
             var ent = new Entity();
            
             ent.SetBaseAdress(ptrBase);
-            ent.SetHeadPos(GetHead(swed, ent.GetBaseAdress()));
+            if(AimbotSettings.isTurnedOn())
+                ent.SetHeadPos(GetHead(swed, ent.GetBaseAdress(),AimbotSettings.getBoneID(AimbotSettings.getBone())));
             ent.SetHealth(swed.ReadInt(ent.GetBaseAdress(), Offsets.health));
             ent.SetTeam(swed.ReadInt(ent.GetBaseAdress(), Offsets.team));
             ent.SetFeetPos(swed.ReadVec(ent.GetBaseAdress(), Offsets.vecOrigin));
@@ -83,10 +84,10 @@ namespace multihack
                 Math.Pow(target.Z - player.Z, 2));
 
         }
-        public static Vector3 GetHead(Swed swed,IntPtr entPointer)
+        public static Vector3 GetHead(Swed swed,IntPtr entPointer,int boneID)
         {
             var bones = swed.ReadPointer(entPointer, Offsets.boneMatrix);
-            var bone = swed.ReadBytes(bones, 0x30 * 8, 0x30);
+            var bone = swed.ReadBytes(bones, 0x30 * boneID, 0x30);
             Vector3 vector3vector = new Vector3();
             vector3vector.X = BitConverter.ToSingle(bone, 0xC);
             vector3vector.Y = BitConverter.ToSingle(bone, 0x1C);
