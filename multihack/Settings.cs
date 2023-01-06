@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace multihack
 {
-    public class Settings
+    public class TriggerSettings
     {
         private static bool _triggerBot { get; set; }
 
-        public static void toggleTriggerOn()
+        public static void toggleOn()
         {
             _triggerBot = true;
         }
-        public static void toggleTriggerOff()
+        public static void toggleOff()
         {
             _triggerBot = false;
         }
-
+        public static bool isTurnedOn()
+        { return _triggerBot; }
     }
 }
