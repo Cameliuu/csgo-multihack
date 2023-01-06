@@ -23,7 +23,14 @@ namespace multihack
             ene.SetTeam(swed.ReadInt(enemy,Offsets.team));
             ene.SetHealth(swed.ReadInt(enemy, Offsets.health));
 
-            Console.WriteLine($"{ene.GetHealth()}");
+            var eH = ene.GetHealth();
+            var eT = ene.GetTeam();
+            if (eH > 0 && eH <= 100 && eT != player.GetTeam())
+            {
+                swed.WriteInt(client, Offsets.forceAttack, 5);
+                Thread.Sleep(1);
+                swed.WriteInt(client, Offsets.forceAttack, 4);
+            }
         }
 
     }
