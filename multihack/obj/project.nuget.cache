@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "3BuN6CXh1O6+2SYgi0Vu+ruslA8xqEKDwXa7TT3cgGwW6k+JBEtG6htgwAil6u0p1IIO6lUXvsr6TDpxY2RwTA==",
+  "success": true,
+  "projectFilePath": "D:\\repos\\csgo-multihack\\multihack\\multihack.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Camel\\.nuget\\packages\\swed32\\1.1.0\\swed32.1.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}
