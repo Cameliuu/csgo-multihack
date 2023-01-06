@@ -14,5 +14,7 @@ namespace multihack
         public static Int32 team = 0xF4;
         public static Int32 health = 0x100;
         public static Int32 forceAttack = 0x322DD10;
+        public static Int32 vecOrigin = 0x138;
+        public static Int32 boneMatrix = 0x26A8;
     }
 }

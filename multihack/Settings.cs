@@ -21,4 +21,19 @@ namespace multihack
         public static bool isTurnedOn()
         { return _triggerBot; }
     }
+    public class AimbotSettings
+    {
+        private static bool _aimBot { get; set; }
+
+        public static void toggleOn()
+        {
+            _aimBot = true;
+        }
+        public static void toggleOff()
+        {
+            _aimBot = false;
+        }
+        public static bool isTurnedOn()
+        { return _aimBot; }
+    }
 }

@@ -9,26 +9,17 @@ namespace multihack
 {
     public class TriggerBot
     {
-        public static void Run(Swed swed, IntPtr client, IntPtr engine)
+        public static void Run(Swed swed, IntPtr client, Entity localPlayer)
         {
-            Entity player = new Entity();
-            Entity ene= new Entity();
-            var buffer = swed.ReadPointer(client, Offsets.localPlayer);
-            var crosshairid = swed.ReadInt(buffer, Offsets.crosshairId);
-            player.SetTeam(swed.ReadInt(buffer, Offsets.team));
-            player.SetHealth(swed.ReadInt(buffer, Offsets.health));
 
-
-            var enemy = swed.ReadPointer(client, Offsets.entityList + (crosshairid - 1) * 0x10);
-            ene.SetTeam(swed.ReadInt(enemy,Offsets.team));
-            ene.SetHealth(swed.ReadInt(enemy, Offsets.health));
-
-            var eH = ene.GetHealth();
-            var eT = ene.GetTeam();
-            if (eH > 0 && eH <= 100 && eT != player.GetTeam())
+            var enemy = Main.ReadEnemyFromCrosshairId(swed, client, localPlayer.GetCrosshairId());
+            var eH = enemy.GetHealth();
+            var eT = enemy.GetTeam();
+            if (eH > 0 && eH <= 100 && eT != localPlayer.GetTeam())
             {
+                Console.WriteLine($"[ + ] SHOOTING ENEMY WITH cID {localPlayer.GetCrosshairId()}");
                 swed.WriteInt(client, Offsets.forceAttack, 5);
-                Thread.Sleep(1);
+                Thread.Sleep(3);
                 swed.WriteInt(client, Offsets.forceAttack, 4);
             }
         }
