@@ -33,8 +33,14 @@ namespace multihack
 
         {
             {"head",8 },
-            {"torso",5 },
-            {"legs",1}
+            {"torso",6 },
+            {"right hand", 39 },
+            {"left hand",13 },
+            {"right leg", 73 },
+            {"left leg",66 },
+            {"right foot",74 },
+            {"left foot",67 },
+            {"below legs",1}
         };
         public static void SetBone(string boneName)
         {
@@ -42,7 +48,7 @@ namespace multihack
         }
         public static void toggleOn()
         {
-            _bone = "legs";
+            _bone = "head";
             _aimBot = true;
         }
         public static void toggleOff()

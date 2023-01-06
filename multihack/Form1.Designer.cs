@@ -33,8 +33,8 @@ partial class Form1
             this.materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
+            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             this.materialTabControl1.SuspendLayout();
             this.TriggerBot.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -108,6 +108,22 @@ partial class Form1
             this.tabPage2.Text = "Aim Bot";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // materialSwitch2
+            // 
+            this.materialSwitch2.AutoSize = true;
+            this.materialSwitch2.Depth = 0;
+            this.materialSwitch2.Location = new System.Drawing.Point(40, 23);
+            this.materialSwitch2.Margin = new System.Windows.Forms.Padding(0);
+            this.materialSwitch2.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialSwitch2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSwitch2.Name = "materialSwitch2";
+            this.materialSwitch2.Ripple = true;
+            this.materialSwitch2.Size = new System.Drawing.Size(161, 37);
+            this.materialSwitch2.TabIndex = 2;
+            this.materialSwitch2.Text = "Enable Aimbot";
+            this.materialSwitch2.UseVisualStyleBackColor = true;
+            this.materialSwitch2.CheckedChanged += new System.EventHandler(this.materialSwitch2_CheckedChanged);
+            // 
             // materialComboBox1
             // 
             this.materialComboBox1.AutoResize = false;
@@ -125,31 +141,21 @@ partial class Form1
             this.materialComboBox1.Items.AddRange(new object[] {
             "Head",
             "Torso",
-            "Legs"});
+            "Right Hand",
+            "Left Hand",
+            "Right Leg",
+            "Left Leg",
+            "Right Foot",
+            "Left Foot",
+            "Below Legs"});
             this.materialComboBox1.Location = new System.Drawing.Point(40, 100);
             this.materialComboBox1.MaxDropDownItems = 4;
             this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
             this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(121, 49);
+            this.materialComboBox1.Size = new System.Drawing.Size(284, 49);
             this.materialComboBox1.StartIndex = 0;
             this.materialComboBox1.TabIndex = 1;
             this.materialComboBox1.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
-            // 
-            // materialSwitch2
-            // 
-            this.materialSwitch2.AutoSize = true;
-            this.materialSwitch2.Depth = 0;
-            this.materialSwitch2.Location = new System.Drawing.Point(40, 23);
-            this.materialSwitch2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialSwitch2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialSwitch2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSwitch2.Name = "materialSwitch2";
-            this.materialSwitch2.Ripple = true;
-            this.materialSwitch2.Size = new System.Drawing.Size(161, 37);
-            this.materialSwitch2.TabIndex = 2;
-            this.materialSwitch2.Text = "Enable Aimbot";
-            this.materialSwitch2.UseVisualStyleBackColor = true;
-            this.materialSwitch2.CheckedChanged += new System.EventHandler(this.materialSwitch2_CheckedChanged);
             // 
             // Form1
             // 

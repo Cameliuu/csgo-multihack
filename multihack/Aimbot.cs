@@ -19,10 +19,6 @@ namespace multihack
                 {
                    
                     Aim(swed, engine, localPlaer, entities[0]);
-                    foreach (var ent in entities)
-                    {
-                        Console.WriteLine($"Magnitude:{ent.GetMagnitude()}");
-                    }
                 }
           
             
@@ -34,14 +30,13 @@ namespace multihack
             var entHead = ent.GetHeadPos();
             float deltaX = entHead.X - playerFeet.X;
             float deltaY = entHead.Y - playerFeet.Y;
-            Console.WriteLine($"Calculating angles for {playerFeet} : {entHead}");
+           
             float X = (float)((Math.Atan2(deltaY, deltaX) * 180 / Math.PI));
 
             float deltaZ = entHead.Z - playerFeet.Z;
        
             float dist = (float)Math.Sqrt(Math.Pow(deltaX, 2) + Math.Pow(deltaY, 2));
             float Y = -(float)(Math.Atan2(deltaZ, dist) * 180 / Math.PI);
-            Console.WriteLine($"Aiming at angles X:{X} Y:{Y}");
             var buffer = swed.ReadPointer(engine, Offsets.clientState);
             swed.WriteBytes(buffer, Offsets.viewAngles, BitConverter.GetBytes(Y));
             swed.WriteBytes(buffer, Offsets.viewAngles+0x4, BitConverter.GetBytes(X));
