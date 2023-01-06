@@ -83,17 +83,36 @@ namespace multihack
             ent.SetGlowIndex(swed.ReadInt(ent.GetBaseAdress(), Offsets.glowIndex));
             if (ESPSettings.isTurnedOn())
             {
-                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, 1f);
-                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, 1f);
-                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, 1f);
-                swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
-
-                swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
-                swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));
-                Console.WriteLine("GLOWING");
+               
+                if(ent.GetTeam()==localPlayer.GetTeam())
+                {
+                    GlowTeam(swed, glowManager, ent);
+                }
+                else
+                    GlowEnemy(swed, glowManager, ent);
             }
             f.Refresh();
             return ent;
+        }
+        public static void GlowEnemy(Swed swed, IntPtr glowManager, Entity ent)
+        {
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, 1f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, .5f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, .5f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
+
+            swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
+            swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));
+        }
+        public static void GlowTeam(Swed swed, IntPtr glowManager, Entity ent)
+        {
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, .5f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, 1f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, .5f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
+
+            swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
+            swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));
         }
         public static bool isAlive(Entity ent)
         { 
