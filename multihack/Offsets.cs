@@ -19,5 +19,7 @@ namespace multihack
         public static Int32 viewAngles = 0x4D90;
         public static Int32 clientState = 0x59F194;
         public static Int32 viewOffset = 0x108;
-        public static Int32 dormant = 0xED;    }
+        public static Int32 dormant = 0xED;
+        public static Int32 viewMatrix = 0x4DF0D44;
+    }
 }

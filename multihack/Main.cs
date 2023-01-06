@@ -6,6 +6,7 @@ using Swed32;
 using System.Threading.Tasks;
 using System.Numerics;
 using System.Runtime.InteropServices;
+using Microsoft.VisualBasic.Logging;
 
 namespace multihack
 {
@@ -117,6 +118,60 @@ namespace multihack
             
             
             return entities;
+        }
+        public static Point World2Screen(ViewMatrix mtx, Vector3 pos, int width, int height)
+        {
+            var twoD = new Point();
+            float screenW=(mtx.m41 * pos.X)+ (mtx.m42 * pos.Y) + (mtx.m43 * pos.Z) + mtx.m44;
+
+            if (screenW > 0.001f)
+            {
+                float screenX = (mtx.m11 * pos.X) + (mtx.m12 * pos.Y) + (mtx.m13 * pos.Z) + (mtx.m14);
+
+                float screenY = (mtx.m21 * pos.X) + ((mtx.m22 * pos.Y)) + (mtx.m23 * pos.Z) + mtx.m24;
+
+                float camX = width / 2;
+                float camY = height / 2;
+
+
+                float X = camX + (camX * screenX / screenW);
+                float Y = camY - (camY * screenX / screenW);
+
+                twoD.X =(int)X;
+                twoD.Y =(int)Y;
+
+                return twoD;
+                
+            }
+            return new Point(-99,-99);
+        }
+        public static ViewMatrix ReadViewMatrix(Swed swed, IntPtr client)
+        {
+            var mtx = new ViewMatrix();
+            var buffer = new byte[16 * 4];
+            buffer = swed.ReadBytes(client,Offsets.viewMatrix,buffer.Length);
+
+            mtx.m11 = BitConverter.ToSingle(buffer, 0 * 4);
+            mtx.m12 = BitConverter.ToSingle(buffer, 1 * 4);
+            mtx.m13 = BitConverter.ToSingle(buffer, 2 * 4);
+            mtx.m14 = BitConverter.ToSingle(buffer, 3 * 4);
+
+            mtx.m21 = BitConverter.ToSingle(buffer, 4 * 4);
+            mtx.m22 = BitConverter.ToSingle(buffer, 5 * 4);
+            mtx.m23 = BitConverter.ToSingle(buffer, 6 * 4);
+            mtx.m24 = BitConverter.ToSingle(buffer, 7 * 4);
+
+            mtx.m31 = BitConverter.ToSingle(buffer, 8 * 4);
+            mtx.m32 = BitConverter.ToSingle(buffer, 9 * 4);
+            mtx.m33 = BitConverter.ToSingle(buffer, 10 * 4);
+            mtx.m34 = BitConverter.ToSingle(buffer, 11 * 4);
+
+            mtx.m41 = BitConverter.ToSingle(buffer, 12 * 4);
+            mtx.m42 = BitConverter.ToSingle(buffer, 13 * 4);
+            mtx.m43 = BitConverter.ToSingle(buffer, 14 * 4);
+            mtx.m44 = BitConverter.ToSingle(buffer, 15 * 4);
+
+            return mtx;
         }
     }
 }

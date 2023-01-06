@@ -65,4 +65,18 @@ namespace multihack
         { return _bone; }
         
     }
+    public class ESPSettings
+    { 
+        private static bool _esp { get; set; }
+        public static void toggleOff()
+        {
+            _esp = false;
+        }
+        public static void toggleOn()
+        {
+            _esp = true;
+        }
+        public static bool isTurnedOn()
+        { return _esp; }
+    }
 }

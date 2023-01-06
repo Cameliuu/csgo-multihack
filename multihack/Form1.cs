@@ -1,6 +1,7 @@
 using MaterialSkin;
 using MaterialSkin.Controls;
 using MaterialSkin.Animations;
+
 namespace multihack;
 
 public partial class Form1 : MaterialForm
@@ -108,7 +109,7 @@ public partial class Form1 : MaterialForm
         {
             AimbotSettings.toggleOn();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("[ + ] TRIGGER BOT ON");
+            Console.WriteLine("[ + ] AIM BOT ON");
             Console.ForegroundColor = ConsoleColor.Gray;
             materialComboBox1.Show();
         }
@@ -116,7 +117,34 @@ public partial class Form1 : MaterialForm
         {
             AimbotSettings.toggleOff();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("[ + ] TRIGGER BOT OFF");
+            Console.WriteLine("[ + ] AIM BOT OFF");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            materialComboBox1.Hide();
+        }
+    }
+
+    private void tabPage2_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void materialSwitch3_CheckedChanged(object sender, EventArgs e)
+    {
+        if (materialSwitch3.Checked)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            ESPSettings.toggleOn();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("[ + ] ESP ON");
+            Console.ForegroundColor = ConsoleColor.Gray;
+            materialComboBox1.Show();
+        }
+        else
+        {
+            ESPSettings.toggleOff();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("[ + ] ESP OFF");
             Console.ForegroundColor = ConsoleColor.Gray;
             materialComboBox1.Hide();
         }

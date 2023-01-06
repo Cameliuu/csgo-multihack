@@ -35,15 +35,19 @@ partial class Form1
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.materialSwitch3 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialTabControl1.SuspendLayout();
             this.TriggerBot.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialTabControl1
             // 
             this.materialTabControl1.Controls.Add(this.TriggerBot);
             this.materialTabControl1.Controls.Add(this.tabPage2);
+            this.materialTabControl1.Controls.Add(this.tabPage1);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Location = new System.Drawing.Point(6, 67);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -107,6 +111,7 @@ partial class Form1
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Aim Bot";
             this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // materialSwitch2
             // 
@@ -157,6 +162,32 @@ partial class Form1
             this.materialComboBox1.TabIndex = 1;
             this.materialComboBox1.SelectedIndexChanged += new System.EventHandler(this.materialComboBox1_SelectedIndexChanged);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.materialSwitch3);
+            this.tabPage1.Location = new System.Drawing.Point(4, 24);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Size = new System.Drawing.Size(719, 349);
+            this.tabPage1.TabIndex = 2;
+            this.tabPage1.Text = "ESP";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // materialSwitch3
+            // 
+            this.materialSwitch3.AutoSize = true;
+            this.materialSwitch3.Depth = 0;
+            this.materialSwitch3.Location = new System.Drawing.Point(63, 36);
+            this.materialSwitch3.Margin = new System.Windows.Forms.Padding(0);
+            this.materialSwitch3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialSwitch3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSwitch3.Name = "materialSwitch3";
+            this.materialSwitch3.Ripple = true;
+            this.materialSwitch3.Size = new System.Drawing.Size(173, 37);
+            this.materialSwitch3.TabIndex = 0;
+            this.materialSwitch3.Text = "materialSwitch3";
+            this.materialSwitch3.UseVisualStyleBackColor = true;
+            this.materialSwitch3.CheckedChanged += new System.EventHandler(this.materialSwitch3_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -173,6 +204,8 @@ partial class Form1
             this.TriggerBot.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
 
     }
@@ -187,4 +220,6 @@ partial class Form1
     private MaterialSkin.Controls.MaterialTabSelector materialTabSelector1;
     private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
     private MaterialSkin.Controls.MaterialSwitch materialSwitch2;
+    private TabPage tabPage1;
+    private MaterialSkin.Controls.MaterialSwitch materialSwitch3;
 }

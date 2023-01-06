@@ -9,7 +9,8 @@
       "multihack/1.0.0": {
         "dependencies": {
           "MaterialSkin.2": "2.3.1",
-          "swed32": "1.1.0"
+          "swed32": "1.1.0",
+          "ezOverLay": "1.0.0.0"
         },
         "runtime": {
           "multihack.dll": {}
@@ -28,6 +29,14 @@
           "lib/net6.0/swed32.dll": {
             "assemblyVersion": "1.1.0.0",
             "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "ezOverLay/1.0.0.0": {
+        "runtime": {
+          "ezOverLay.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
           }
         }
       }
@@ -52,6 +61,11 @@
       "sha512": "sha512-fZWXefUAxSrMyqIjMQTUdRVvbUgTdtcx9HBU9eYwZEqzkKOmrj8NeRCGOl+W3+sEQebQHHisylLn7n2aWqKCbw==",
       "path": "swed32/1.1.0",
       "hashPath": "swed32.1.1.0.nupkg.sha512"
+    },
+    "ezOverLay/1.0.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
