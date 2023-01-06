@@ -16,6 +16,7 @@ public partial class Form1 : Form
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[ + ] TRIGGER BOT ON");
             Console.ForegroundColor = ConsoleColor.Gray;
+            trackBar1.Show();
         }
         else
         {
@@ -23,6 +24,7 @@ public partial class Form1 : Form
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("[ + ] TRIGGER BOT OFF");
             Console.ForegroundColor = ConsoleColor.Gray;
+            trackBar1.Hide();
         }
         
     }
@@ -31,6 +33,7 @@ public partial class Form1 : Form
     {
         Thread thread = new Thread(Main.Run) { IsBackground = true };
         thread.Start();
+        trackBar1.Hide();
     }
 
     private void trackBar1_Scroll(object sender, EventArgs e)
