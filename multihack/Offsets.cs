@@ -16,5 +16,8 @@ namespace multihack
         public static Int32 forceAttack = 0x322DD10;
         public static Int32 vecOrigin = 0x138;
         public static Int32 boneMatrix = 0x26A8;
-    }
+        public static Int32 viewAngles = 0x4D90;
+        public static Int32 clientState = 0x59F194;
+        public static Int32 viewOffset = 0x108;
+        public static Int32 dormant = 0xED;    }
 }
