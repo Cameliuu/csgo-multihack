@@ -66,8 +66,10 @@ namespace multihack
         
     }
     public class ESPSettings
-    { 
+    {
         private static bool _esp { get; set; }
+        private static float[] teamGlow = new float[4];
+        private static float[] enemyGlow = new float[4] ;
         public static void toggleOff()
         {
             _esp = false;
@@ -78,5 +80,16 @@ namespace multihack
         }
         public static bool isTurnedOn()
         { return _esp; }
+        public static float[] GetTeamGlow() { return teamGlow; }
+        public static float[] GetEnemyGlow() { return enemyGlow; }
+
+        public static void SetTeamGlow(int index, float value)
+        {
+            teamGlow[index] = value;
+        }
+        public static void SetEnemyGlow(int index, float value)
+        {
+            enemyGlow[index] = value;
+        }
     }
 }

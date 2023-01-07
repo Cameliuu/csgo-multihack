@@ -86,30 +86,37 @@ namespace multihack
                
                 if(ent.GetTeam()==localPlayer.GetTeam())
                 {
-                    GlowTeam(swed, glowManager, ent);
+                    var teamGlow = ESPSettings.GetTeamGlow();
+                    GlowTeam(swed, glowManager, ent, teamGlow[0], teamGlow[1], teamGlow[2], teamGlow[3]);
+                   
                 }
                 else
-                    GlowEnemy(swed, glowManager, ent);
+                {
+                    var enemyGlow = ESPSettings.GetEnemyGlow();
+                    GlowEnemy(swed, glowManager, ent, enemyGlow[0], enemyGlow[1], enemyGlow[2], enemyGlow[3]);
+                    Console.WriteLine($"GLOWIN ENEMY:{enemyGlow[0]},{enemyGlow[1]},{enemyGlow[2]},{enemyGlow[3]}");
+                }
+                   
             }
             f.Refresh();
             return ent;
         }
-        public static void GlowEnemy(Swed swed, IntPtr glowManager, Entity ent)
+        public static void GlowEnemy(Swed swed, IntPtr glowManager, Entity ent, float r, float g, float b, float a)
         {
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, 1f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, .5f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, .5f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, r);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, g);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, b);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, a);
 
             swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
             swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));
         }
-        public static void GlowTeam(Swed swed, IntPtr glowManager, Entity ent)
+        public static void GlowTeam(Swed swed, IntPtr glowManager, Entity ent, float r, float g, float b, float a)
         {
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, .5f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, 1f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, .5f);
-            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, 1f);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, r);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0xC, g);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x10, b);
+            swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x14, a);
 
             swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x27, BitConverter.GetBytes(true));
             swed.WriteBytes(glowManager + (ent.GetGlowIndex() * 0x38) + 0x28, BitConverter.GetBytes(true));

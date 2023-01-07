@@ -51,5 +51,6 @@ namespace multihack
         public Point GetTop() { return top; }
         public Point GetBot() { return bot; }
         public Int32 GetGlowIndex() { return glowIndex; }
+
     }
 }   
