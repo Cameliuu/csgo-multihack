@@ -17,23 +17,15 @@ namespace multihack
             if (GetAsyncKeyState(Keys.F1) < 0)
                 if (entities.Count > 0 && entities[0].GetXDist() <= Entities.GetAimbotFOV())
                 {
-                   
+                    Console.WriteLine($"{entities[0].GetXDist()}:{Entities.GetAimbotFOV()}");
                     Aim(swed, engine, localPlaer, entities[0]);
                 }
             else
                     Console.WriteLine($"{entities[0].GetXDist()} : {Entities.GetAimbotFOV()}");
 
-            if (GetAsyncKeyState(Keys.F2) < 0)
-            {
-                int i = 0;
-                foreach (var ent in entities)
-                {
-                    Console.WriteLine($"Entity {i} : {ent.GetFeetPos()}");
-                    i++;
-                }
-            }
+      
           
-            
+
                             
         }
         public static void Aim(Swed swed,IntPtr engine,Entity localPlayer, Entity ent)

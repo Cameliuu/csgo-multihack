@@ -39,17 +39,7 @@ namespace multihack
             Thread.Sleep(20);
             Console.WriteLine("[ + ] REFRESHING ESP FORM");
         }
-
-        private void Form2_Paint(object sender, PaintEventArgs e)
-        {
-            Graphics g =e.Graphics;
-            float pixdist = 50;
-            Pen fovpen = new Pen(Color.LightGray, 2);
-            Entities.SetAimbotFOV(pixdist);
-            g.DrawEllipse(fovpen, (Width / 2) - 50, (Height / 2) - 36, 100, 100);
-
-        }
-            
+    
         }
     }
 

@@ -266,4 +266,9 @@ public partial class Form1 : MaterialForm
         Form2 form2 = new Form2();
         form2.Show();
     }
+
+    private void materialSlider10_Click(object sender, EventArgs e)
+    {
+        Entities.SetAimbotFOV((float)materialSlider10.Value*5);
+    }
 }

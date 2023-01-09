@@ -33,6 +33,8 @@ partial class Form1
             this.materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialSlider1 = new MaterialSkin.Controls.MaterialSlider();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.materialSlider10 = new MaterialSkin.Controls.MaterialSlider();
+            this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
             this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -49,7 +51,6 @@ partial class Form1
             this.materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialSwitch3 = new MaterialSkin.Controls.MaterialSwitch();
-            this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1.SuspendLayout();
             this.TriggerBot.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -115,6 +116,7 @@ partial class Form1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.materialSlider10);
             this.tabPage2.Controls.Add(this.materialCheckbox3);
             this.tabPage2.Controls.Add(this.materialSwitch2);
             this.tabPage2.Controls.Add(this.materialComboBox1);
@@ -126,6 +128,37 @@ partial class Form1
             this.tabPage2.Text = "Aim Bot";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // materialSlider10
+            // 
+            this.materialSlider10.Depth = 0;
+            this.materialSlider10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialSlider10.Location = new System.Drawing.Point(438, 115);
+            this.materialSlider10.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSlider10.Name = "materialSlider10";
+            this.materialSlider10.RangeMax = 50;
+            this.materialSlider10.Size = new System.Drawing.Size(233, 40);
+            this.materialSlider10.TabIndex = 4;
+            this.materialSlider10.Text = "Sensitivity";
+            this.materialSlider10.Value = 1;
+            this.materialSlider10.Click += new System.EventHandler(this.materialSlider10_Click);
+            // 
+            // materialCheckbox3
+            // 
+            this.materialCheckbox3.AutoSize = true;
+            this.materialCheckbox3.Depth = 0;
+            this.materialCheckbox3.Location = new System.Drawing.Point(438, 23);
+            this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox3.Name = "materialCheckbox3";
+            this.materialCheckbox3.ReadOnly = false;
+            this.materialCheckbox3.Ripple = true;
+            this.materialCheckbox3.Size = new System.Drawing.Size(160, 37);
+            this.materialCheckbox3.TabIndex = 3;
+            this.materialCheckbox3.Text = "Enable Sensitivity";
+            this.materialCheckbox3.UseVisualStyleBackColor = true;
+            this.materialCheckbox3.CheckedChanged += new System.EventHandler(this.materialCheckbox3_CheckedChanged);
             // 
             // materialSwitch2
             // 
@@ -419,23 +452,6 @@ partial class Form1
             this.materialSwitch3.UseVisualStyleBackColor = true;
             this.materialSwitch3.CheckedChanged += new System.EventHandler(this.materialSwitch3_CheckedChanged);
             // 
-            // materialCheckbox3
-            // 
-            this.materialCheckbox3.AutoSize = true;
-            this.materialCheckbox3.Depth = 0;
-            this.materialCheckbox3.Location = new System.Drawing.Point(362, 13);
-            this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
-            this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialCheckbox3.Name = "materialCheckbox3";
-            this.materialCheckbox3.ReadOnly = false;
-            this.materialCheckbox3.Ripple = true;
-            this.materialCheckbox3.Size = new System.Drawing.Size(108, 37);
-            this.materialCheckbox3.TabIndex = 3;
-            this.materialCheckbox3.Text = "FOV Circle";
-            this.materialCheckbox3.UseVisualStyleBackColor = true;
-            this.materialCheckbox3.CheckedChanged += new System.EventHandler(this.materialCheckbox3_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -483,4 +499,5 @@ partial class Form1
     private MaterialSkin.Controls.MaterialTextBox2 materialTextBox22;
     private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
     private MaterialSkin.Controls.MaterialCheckbox materialCheckbox3;
+    private MaterialSkin.Controls.MaterialSlider materialSlider10;
 }
