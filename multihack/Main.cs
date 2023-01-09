@@ -20,7 +20,6 @@ namespace multihack
             var client = swed.GetModuleBase("client.dll");
             Entities.SetClient(client);
             Entities.SetSwed(swed); 
-            
             var engine = swed.GetModuleBase("engine.dll");
 
             while(true)
@@ -28,7 +27,8 @@ namespace multihack
                 var localPlayer = ReadLocalPlayer(swed, client);
                 Entities.SetLocalPlayer(localPlayer);
                 var entities = ReadEntities(swed, client, localPlayer);
-                entities = entities.OrderBy(x => x.GetMagnitude()).ToList();
+                entities = entities.OrderBy(x => x.GetXDist()).ToList();
+                
                 Entities.SetEntitiesList(entities);
                 if(TriggerSettings.isTurnedOn())
                 {
@@ -65,8 +65,9 @@ namespace multihack
         public static Entity ReadEntity(Swed swed,IntPtr ptrBase, Entity localPlayer, IntPtr client)
         {
             var glowManager = swed.ReadPointer(client, Offsets.glowObjectManager);
+         
             var ent = new Entity();
-            Form2 f = new Form2();
+            
             ent.SetBaseAdress(ptrBase);
             if(AimbotSettings.isTurnedOn())
                 ent.SetHeadPos(GetHead(swed, ent.GetBaseAdress(),AimbotSettings.getBoneID(AimbotSettings.getBone())));
@@ -75,20 +76,23 @@ namespace multihack
             vect.Z += 58;
             ent.SetTeam(swed.ReadInt(ent.GetBaseAdress(), Offsets.team));
             ent.SetFeetPos(swed.ReadVec(ent.GetBaseAdress(), Offsets.vecOrigin));
+            ent.SetTop(World2Screen(ReadViewMatrix(swed, client), ent.GetHeadPos(), (int)Entities.GetAimbotWidth(), (int)Entities.GetAimbotHeight()));
+            ent.SetBot(World2Screen(ReadViewMatrix(swed, client), ent.GetFeetPos(), (int)Entities.GetAimbotWidth(), (int)Entities.GetAimbotHeight()));
+
+            ent.SetXDist(CalcDist(ent));
            
             ent.SetMagnitude(CalcMag(localPlayer.GetFeetPos(), ent.GetHeadPos()));
             ent.SetDormant(swed.ReadInt(ent.GetBaseAdress(), Offsets.dormant));
-            ent.SetTop(World2Screen(ReadViewMatrix(swed, client), vect, f.Width, f.Height));
-            ent.SetBot(World2Screen(ReadViewMatrix(swed, client), ent.GetFeetPos(), f.Width, f.Height));
+           
             ent.SetGlowIndex(swed.ReadInt(ent.GetBaseAdress(), Offsets.glowIndex));
             if (ESPSettings.isTurnedOn())
             {
-               
-                if(ent.GetTeam()==localPlayer.GetTeam())
+
+                if (ent.GetTeam() == localPlayer.GetTeam())
                 {
                     var teamGlow = ESPSettings.GetTeamGlow();
                     GlowTeam(swed, glowManager, ent, teamGlow[0], teamGlow[1], teamGlow[2], teamGlow[3]);
-                   
+
                 }
                 else
                 {
@@ -96,11 +100,12 @@ namespace multihack
                     GlowEnemy(swed, glowManager, ent, enemyGlow[0], enemyGlow[1], enemyGlow[2], enemyGlow[3]);
                     Console.WriteLine($"GLOWIN ENEMY:{enemyGlow[0]},{enemyGlow[1]},{enemyGlow[2]},{enemyGlow[3]}");
                 }
-                   
+
             }
-            f.Refresh();
+          
             return ent;
         }
+      
         public static void GlowEnemy(Swed swed, IntPtr glowManager, Entity ent, float r, float g, float b, float a)
         {
             swed.WriteFloat(glowManager + (ent.GetGlowIndex() * 0x38) + 0x8, r);
@@ -164,18 +169,21 @@ namespace multihack
                     entities.Add(ent);
                 }
             }
-            
-            
+
+          
             
             return entities;
         }
+      
         public static Point World2Screen(ViewMatrix mtx, Vector3 pos, int width, int height)
         {
+           
             var twoD = new Point();
             float screenW=(mtx.m41 * pos.X)+ (mtx.m42 * pos.Y) + (mtx.m43 * pos.Z) + mtx.m44;
-
+           
             if (screenW > 0.001f)
             {
+             
                 float screenX = (mtx.m11 * pos.X) + (mtx.m12 * pos.Y) + (mtx.m13 * pos.Z) + (mtx.m14);
 
                 float screenY = (mtx.m21 * pos.X) + ((mtx.m22 * pos.Y)) + (mtx.m23 * pos.Z) + mtx.m24;
@@ -189,11 +197,18 @@ namespace multihack
 
                 twoD.X =(int)X;
                 twoD.Y =(int)Y;
-
+               
                 return twoD;
                 
             }
             return new Point(-99,-99);
+        }
+        public static float CalcDist(Entity ent)
+        {
+            float xx = Entities.GetAimbotWidth() / 2;
+            float xy = Entities.GetAimbotHeight() / 2;
+            
+            return (float)Math.Sqrt(Math.Pow(xx - ent.GetTop().X, 2) + Math.Pow(xy - ent.GetTop().Y, 2));
         }
         public static ViewMatrix ReadViewMatrix(Swed swed, IntPtr client)
         {

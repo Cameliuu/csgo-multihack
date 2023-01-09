@@ -166,8 +166,7 @@ public partial class Form1 : MaterialForm
     {
         if (materialCheckbox1.Checked)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("[ + ] BOXES ON");
             Console.ForegroundColor = ConsoleColor.Gray;
@@ -260,5 +259,11 @@ public partial class Form1 : MaterialForm
     private void materialSlider7_Click(object sender, EventArgs e)
     {
         ESPSettings.SetEnemyGlow(3, (float)materialSlider7.Value / 10);
+    }
+
+    private void materialCheckbox3_CheckedChanged(object sender, EventArgs e)
+    {
+        Form2 form2 = new Form2();
+        form2.Show();
     }
 }

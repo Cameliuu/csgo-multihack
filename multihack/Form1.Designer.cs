@@ -49,6 +49,7 @@ partial class Form1
             this.materialCheckbox2 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialCheckbox1 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialSwitch3 = new MaterialSkin.Controls.MaterialSwitch();
+            this.materialCheckbox3 = new MaterialSkin.Controls.MaterialCheckbox();
             this.materialTabControl1.SuspendLayout();
             this.TriggerBot.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -114,6 +115,7 @@ partial class Form1
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.materialCheckbox3);
             this.tabPage2.Controls.Add(this.materialSwitch2);
             this.tabPage2.Controls.Add(this.materialComboBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
@@ -411,11 +413,28 @@ partial class Form1
             this.materialSwitch3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialSwitch3.Name = "materialSwitch3";
             this.materialSwitch3.Ripple = true;
-            this.materialSwitch3.Size = new System.Drawing.Size(173, 37);
+            this.materialSwitch3.Size = new System.Drawing.Size(208, 37);
             this.materialSwitch3.TabIndex = 0;
-            this.materialSwitch3.Text = "materialSwitch3";
+            this.materialSwitch3.Text = "Enable ESP Wallhack";
             this.materialSwitch3.UseVisualStyleBackColor = true;
             this.materialSwitch3.CheckedChanged += new System.EventHandler(this.materialSwitch3_CheckedChanged);
+            // 
+            // materialCheckbox3
+            // 
+            this.materialCheckbox3.AutoSize = true;
+            this.materialCheckbox3.Depth = 0;
+            this.materialCheckbox3.Location = new System.Drawing.Point(362, 13);
+            this.materialCheckbox3.Margin = new System.Windows.Forms.Padding(0);
+            this.materialCheckbox3.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.materialCheckbox3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialCheckbox3.Name = "materialCheckbox3";
+            this.materialCheckbox3.ReadOnly = false;
+            this.materialCheckbox3.Ripple = true;
+            this.materialCheckbox3.Size = new System.Drawing.Size(108, 37);
+            this.materialCheckbox3.TabIndex = 3;
+            this.materialCheckbox3.Text = "FOV Circle";
+            this.materialCheckbox3.UseVisualStyleBackColor = true;
+            this.materialCheckbox3.CheckedChanged += new System.EventHandler(this.materialCheckbox3_CheckedChanged);
             // 
             // Form1
             // 
@@ -463,4 +482,5 @@ partial class Form1
     private MaterialSkin.Controls.MaterialSlider materialSlider4;
     private MaterialSkin.Controls.MaterialTextBox2 materialTextBox22;
     private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
+    private MaterialSkin.Controls.MaterialCheckbox materialCheckbox3;
 }

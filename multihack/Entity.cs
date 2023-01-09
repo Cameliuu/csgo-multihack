@@ -20,6 +20,7 @@ namespace multihack
         private Point top { get; set; }
         private Point bot {get; set;}
         private Int32 glowIndex { get; set; }
+        private float xDist { get; set; }
         public Rectangle rect()
         {
             return new Rectangle
@@ -28,6 +29,7 @@ namespace multihack
                 Size = new Size((bot.Y - top.Y) / 2, (bot.Y - top.Y))
             };
         }
+        public void SetXDist(float xdist) { xDist = xdist; }
         public void SetHealth(Int32 health) { this._health = health; }
         public void SetTop(Point topp) { top = topp; }
         public void SetGlowIndex(Int32 glow) { glowIndex = glow; }
@@ -51,6 +53,6 @@ namespace multihack
         public Point GetTop() { return top; }
         public Point GetBot() { return bot; }
         public Int32 GetGlowIndex() { return glowIndex; }
-
+        public float GetXDist() { return xDist; }
     }
 }   

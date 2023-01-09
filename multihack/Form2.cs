@@ -25,6 +25,9 @@ namespace multihack
             ez ez = new ez();
             ez.SetInvi(this);
             ez.DoStuff("Counter-Strike: Global Offensive - Direct3D 9", this);
+           
+            Entities.SetAimbotHeight(Height);
+            Entities.SetAimbotWitdh(Width);
             RefreshForm();
 
         }
@@ -39,28 +42,16 @@ namespace multihack
 
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = e.Graphics;
-            Pen red = new Pen(Color.Red, 3);
-            Pen green = new Pen(Color.Green, 3);
-           if(Entities.GetEntitiesList().Count > 0)
-            {
-                foreach (var ent in Entities.GetEntitiesList())
-                {
-                    
-                    if (ent.GetTeam() == Entities.GetLocalPlayer().GetTeam())// && ent.GetBot().X > 0 && ent.GetBot().X < Width && ent.GetBot().Y > 0 && ent.GetBot().Y < Height)
-                    {
-                        g.DrawRectangle(green, ent.rect());
-                        
-                    }
-                    else if (ent.GetTeam() != Entities.GetLocalPlayer().GetTeam())// && ent.GetBot().X > 0 && ent.GetBot().X < Width && ent.GetBot().Y > 0 && ent.GetBot().Y < Height)
-                    {
-                        g.DrawRectangle(red, ent.rect());
-                        Console.WriteLine(ent.rect());
+            Graphics g =e.Graphics;
+            float pixdist = 50;
+            Pen fovpen = new Pen(Color.LightGray, 2);
+            Entities.SetAimbotFOV(pixdist);
+            g.DrawEllipse(fovpen, (Width / 2) - 50, (Height / 2) - 36, 100, 100);
 
-                    }
-                }
-            }
+        }
+            
         }
     }
-}
+
+
 
